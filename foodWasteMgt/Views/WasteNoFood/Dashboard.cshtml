@@ -2,7 +2,7 @@
 @{
     ViewData["title"] = "WasteNoFood";
     ViewData["base"] = "All the Food Wastes";
-    ViewData["sub"] = "available";
+    ViewData["sub"] = "Available";
 }
 @if (Model.Any())
 {
@@ -10,7 +10,7 @@
         <form method="get" asp-action="dashboard" asp-controller="WasteNoFood">
             <div class="form-group mt-2">
                 <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" name="searchString" placeholder="search for food wastage availabe by ADDRESS, CITY, STATE.." autofocus required>
+                    <input type="text" class="form-control" name="searchString" placeholder="search for waste foods availabe by ADDRESS, CITY, STATE.." autofocus required>
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-lg btn-default">
                             <i class="fa fa-search"></i>
