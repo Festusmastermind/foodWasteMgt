@@ -1,0 +1,14 @@
+﻿@if (TempData["success"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert" style="position:fixed; top:10px; right:10px; z-index:100000">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <i class="fas fa-check-o"></i> @TempData["success"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible" role="alert" style="position:fixed; top:10px; right:10px; z-index:100000">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        @TempData["ErrorMessage"]
+    </div>
+}

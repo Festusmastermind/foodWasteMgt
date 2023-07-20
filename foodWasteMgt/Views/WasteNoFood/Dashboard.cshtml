@@ -1,0 +1,98 @@
+﻿@model PaginatedList<foodWasteMgt.Models.ApplicationUser>
+@{
+    ViewData["title"] = "WasteNoFood";
+    ViewData["base"] = "All the Food Wastages";
+    ViewData["sub"] = "available";
+}
+@if (Model.Any())
+{
+    <div class="col-md-12 offset-md-1">
+        <form method="get" asp-action="dashboard" asp-controller="WasteNoFood">
+            <div class="form-group mt-2">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" name="searchString" placeholder="search for food wastage availabe by ADDRESS, CITY, STATE.." autofocus required>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-lg btn-default">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="card card-solid">
+            <div class="card-body pb-0">
+                <div class="row">
+                    @{
+
+                        var prefix = "234";
+                        var whatsapp = "https://wa.me/";
+                        foreach (var m in Model)
+                        {
+                            //var photoPath = "~/images/noimage.jpg);
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                <div class="card bg-light d-flex flex-fill">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        Waste Food
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b></b></h2>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>City: @m.City </li>
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>State: @m.State</li>
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-map-marker fa-lg"></i></span> Address: @m.Address</li>
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : @prefix@m.Phone</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="~/images/noimage.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            <a href="@whatsapp@prefix@m.Phone" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-phone-square"></i>WhatsaApp
+                                            </a>
+                                            <a href="tel: @prefix@m.Phone" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-phone"></i> Call
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+
+                </div>
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+
+
+                <div class="pagination mb-3">
+                    <a asp-action="Index" asp-controller="WasteNoFood" class="btn btn-outline-warning mr-2"><i class="fa fa-arrow-left"></i> Back</a>
+                    <a asp-action="Dashboard" asp-controller="WasteNoFood" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-outline-primary mr-2 @prevDisabled">
+                        Previous
+                    </a>
+                    <a asp-action="Dashboard" asp-controller="WasteNoFood" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-outline-primary @nextDisabled">Next</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h3 style="color:darkred">No Food Waste Available for Now!!..</h3>
+    <small>
+        <a asp-controller="WasteNoFood" asp-action="dashboard">Visit Main Page</a>
+    </small>
+}
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

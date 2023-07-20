@@ -1,0 +1,77 @@
+﻿@model ApplicationUser
+@{ 
+    ViewData["title"] = "WasteNoFood";
+    ViewData["base"] = "Complete the Form";
+    ViewData["sub"] = "Below"; 
+}
+   <div class="col-md-12">
+       <div class="container">
+           <div class="card card-solid shadow-lg">
+               <div class="card-header">Welcome To <i>WasteNoFood</i> <small>Let's get to know you</small></div>
+               <div class="card-body pb-0">
+                   <form method="post" asp-action="SaveIndex" asp-controller="WasteNoFood">
+                       <div asp-validation-summary="All" class="text-danger"></div>
+                       <div class="row">
+                           <div class="col-6 form-group">
+                               <label asp-for="Name"></label>
+                               <input asp-for="Name" class="form-control" placeholder="Enter your full name" />
+                           </div>
+                           <div class="col-6 form-group">
+                               <label asp-for="Phone"></label>
+                               <input asp-for="Phone" class="form-control" placeholder="Enter your phone number" />
+                           </div>
+                           <div class="col-6 form-group">
+                               <label asp-for="Occupation"></label>
+                               <input asp-for="Occupation" class="form-control" placeholder="Enter your occupation" />
+                           </div>
+                           <div class="col-6 form-group">
+                               <label asp-for="Address"></label>
+                               <input asp-for="Address" class="form-control" placeholder="Enter your address" required />
+                           </div>
+                           <div class="col-6 form-group">
+                               <label asp-for="City"></label>
+                               <input asp-for="City" class="form-control" placeholder="Enter your city" required />
+                           </div>
+                           <div class="col-6 form-group">
+                               <label asp-for="State"></label>
+                               <input asp-for="State" class="form-control" placeholder="Enter your state" required />
+                           </div>
+                           <div class="col-12 form-group">
+                               <label asp-for="UserType" class="control-label"></label>
+                               <select asp-for="UserType" asp-items="Html.GetEnumSelectList<UserType>()"
+                                       class="custom-select">
+                                   <option value="">Select appropriate UserType</option>
+                               </select>
+                           </div>
+                       </div>
+                      
+                       <button type="submit" class="btn btn-primary">Submit </button>
+                   </form>
+               </div>
+               <div class="card-footer">
+
+               </div>
+           </div>
+       </div>
+   </div>
+    @section Scripts{ 
+        <partial name="_ValidationScriptsPartial" />
+    } 
+
+@*
+   <div class="row">
+       <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+           <div class="card bg-light d-flex flex-fill">
+               <div class="card-header text-muted border-bottom-0">
+                   Digital Strategist
+               </div>
+               <div class="card-body pt-0">
+                   <div class="row">
+                   </div>
+               </div>
+               <div class="card-footer">
+
+               </div>
+           </div>
+       </div>
+   </div>*@
